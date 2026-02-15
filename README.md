@@ -1,1 +1,1 @@
-# Machine Learning 601
+# Nik's Thinking and Writing
