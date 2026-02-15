@@ -1,0 +1,117 @@
+---
+layout: default
+---
+
+<div class="search-page">
+  <div class="search-container">
+    <h1>Search</h1>
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Search articles..." autocomplete="off">
+      <button id="search-btn" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="search-results" class="search-results"></div>
+</div>
+
+<script>
+  (function () {
+    var posts = [
+      {% for post in site.posts %}{
+    title: {{ post.title | default: "" | jsonify }},
+    url: "{{ post.url | relative_url }}",
+      date: "{{ post.date | date: '%Y-%m-%d' }}",
+        category: {{ post.category | default: "" | jsonify }},
+    content: {{ post.content | strip_html | truncate: 500 | default: "" | jsonify }},
+    excerpt: {{ post.excerpt | strip_html | truncate: 200 | default: "" | jsonify }}
+  } {% unless forloop.last %}, {% endunless %}
+  {% endfor %}
+  ];
+
+  var searchInput = document.getElementById('search-input');
+  var searchBtn = document.getElementById('search-btn');
+  var resultsContainer = document.getElementById('search-results');
+
+  function performSearch() {
+    var query = searchInput.value.toLowerCase().trim();
+
+    if (query.length < 2) {
+      resultsContainer.innerHTML = '<p class="search-hint">Enter at least 2 characters to search</p>';
+      return;
+    }
+
+    var results = posts.filter(function (post) {
+      var title = (post.title || '').toLowerCase();
+      var content = (post.content || '').toLowerCase();
+      var category = (post.category || '').toLowerCase();
+      return title.indexOf(query) !== -1 || content.indexOf(query) !== -1 || category.indexOf(query) !== -1;
+    });
+
+    displayResults(results, query);
+  }
+
+  function displayResults(results, query) {
+    if (results.length === 0) {
+      resultsContainer.innerHTML = '<p class="no-results">No articles found for "' + escapeHtml(query) + '"</p>';
+      return;
+    }
+
+    var html = '<p class="results-count">Found ' + results.length + ' article(s)</p>';
+    html += '<div class="results-list">';
+
+    for (var i = 0; i < results.length; i++) {
+      var post = results[i];
+      html += '<article class="search-result">';
+      html += '<h3><a href="' + post.url + '">' + highlightMatch(post.title || 'Untitled', query) + '</a></h3>';
+      html += '<div class="result-meta">';
+      html += '<span class="result-date">' + post.date + '</span>';
+      if (post.category) {
+        html += '<span class="result-category">' + escapeHtml(post.category) + '</span>';
+      }
+      html += '</div>';
+      html += '<p class="result-excerpt">' + highlightMatch(post.excerpt || '', query) + '</p>';
+      html += '</article>';
+    }
+
+    html += '</div>';
+    resultsContainer.innerHTML = html;
+  }
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function highlightMatch(text, query) {
+    if (!text) return '';
+    var escaped = escapeHtml(text);
+    var regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return escaped.replace(regex, '<mark>$1</mark>');
+  }
+
+  searchInput.addEventListener('keyup', function (e) {
+    if (e.key === 'Enter') {
+      performSearch();
+    }
+  });
+
+  searchInput.addEventListener('input', function () {
+    if (searchInput.value.length >= 2) {
+      performSearch();
+    } else if (searchInput.value.length === 0) {
+      resultsContainer.innerHTML = '';
+    }
+  });
+
+  searchBtn.addEventListener('click', performSearch);
+
+  searchInput.focus();
+})();
+</script>

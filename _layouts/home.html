@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<div class="home-content">
+  <section class="intro">
+    <h1>{{ site.title }}</h1>
+    <p class="tagline">{{ site.description }}</p>
+  </section>
+
+  <section class="recent-posts">
+    <h2>Recent Posts</h2>
+    <div class="posts-list">
+      {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+      {% for post in sorted_posts limit:5 %}
+      <article class="post-preview">
+        <div class="post-meta">
+          <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+          {% assign words = post.content | number_of_words %}
+          {% assign minutes = words | divided_by: 200 %}
+          {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+          <span class="read-time">{{ minutes }} min read</span>
+        </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        {% if post.excerpt %}
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+    <a href="{{ '/posts' | relative_url }}" class="view-all">View all posts &rarr;</a>
+  </section>
+</div>

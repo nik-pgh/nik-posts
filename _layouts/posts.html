@@ -1,0 +1,82 @@
+---
+layout: default
+---
+
+<div class="posts-page">
+  <h1>All Posts</h1>
+
+  {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+
+  {% for year in posts_by_year %}
+  <section class="year-section">
+    <h2 class="year-title">{{ year.name }}</h2>
+
+    {% assign posts_by_month = year.items | group_by_exp: "post", "post.date | date: '%B'" %}
+
+    {% for month in posts_by_month %}
+    <div class="month-section">
+      <h3 class="month-title">{{ month.name }}</h3>
+
+      <div class="posts-timeline">
+        {% for post in month.items %}
+        <article class="timeline-post">
+          {% assign img_src = nil %}
+
+          {% comment %} Priority 1: Front matter thumbnail {% endcomment %}
+          {% if post.thumbnail %}
+            {% assign img_src = post.thumbnail %}
+
+          {% comment %} Priority 2: Video poster attribute {% endcomment %}
+          {% elsif post.content contains 'poster="' %}
+            {% assign poster_split = post.content | split: 'poster="' %}
+            {% if poster_split.size > 1 %}
+              {% assign img_src = poster_split[1] | split: '"' | first %}
+            {% endif %}
+
+          {% comment %} Priority 3: First img tag with image extension {% endcomment %}
+          {% elsif post.content contains '<img' %}
+            {% assign img_parts = post.content | split: '<img' %}
+            {% for part in img_parts %}
+              {% if forloop.first == false and img_src == nil %}
+                {% if part contains 'src="' %}
+                  {% assign src_split = part | split: 'src="' %}
+                  {% if src_split.size > 1 %}
+                    {% assign potential_src = src_split[1] | split: '"' | first %}
+                    {% if potential_src contains '.png' or potential_src contains '.jpg' or potential_src contains '.jpeg' or potential_src contains '.gif' or potential_src contains '.webp' or potential_src contains '.svg' %}
+                      {% assign img_src = potential_src %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          <div class="post-thumbnail">
+            {% if img_src and img_src != "" %}
+            <img src="{{ img_src }}" alt="{{ post.title }}" loading="lazy">
+            {% else %}
+            <div class="no-thumbnail">
+              <span>{{ post.category | default: "Post" }}</span>
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="post-info">
+            <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+            <div class="post-meta">
+              <span class="post-date">Published: {{ post.date | date: "%Y-%m-%d" }}</span>
+              {% assign words = post.content | number_of_words %}
+              {% assign minutes = words | divided_by: 200 %}
+              {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+              <span class="read-time">{{ minutes }} min read</span>
+            </div>
+            <p class="post-summary">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  {% endfor %}
+</div>

@@ -4,25 +4,19 @@ email: knocknocknik@gmail.com
 baseurl:
 url: "https://nik-pitts.github.io/machinelearning601"
 description: "Little Cooperative Machines ML Research Log"
+favicon: /favicon.svg
 
 permalink: /:slug.html
 
-plugins:
-  - jekyll-remote-theme
-
-remote_theme: riggraz/no-style-please
-
-# Other settings specific to the theme
+# Theme settings
 theme_config:
   appearance: "auto" # can be "light", "dark" or "auto"
-  back_home_text: ".." # customize text for homepage link in post layout
+  back_home_text: "Back" # customize text for homepage link in post layout
   date_format: "%Y-%m-%d" # customize how date is formatted
-  show_description: false # show blog description in home page
 
-sass:
-  style: :compressed
+# Excerpt settings
+excerpt_separator: <!--more-->
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-include-cache

@@ -1,0 +1,102 @@
+# ===========================================
+# THEME CONFIGURATION
+# Edit these values to customize your blog
+# ===========================================
+
+# -----------------------------
+# FONTS
+# -----------------------------
+fonts:
+  # Primary font for headings
+  heading: "'Playfair Display', 'Times New Roman', Georgia, serif"
+  # Body text font
+  body: "'Libre Baskerville', 'Times New Roman', Georgia, serif"
+  # Monospace for code
+  code: "'JetBrains Mono', 'Fira Code', Consolas, monospace"
+  # Base font size
+  base_size: "17px"
+  # Line height for body text
+  line_height: "1.8"
+
+# -----------------------------
+# LIGHT MODE COLORS
+# -----------------------------
+light:
+  # Backgrounds
+  bg_primary: "#fdfbf7"        # Main background (warm cream)
+  bg_secondary: "#f5f2eb"      # Header/card background
+  bg_code: "#f0ede6"           # Code block background
+
+  # Text colors
+  text_primary: "#2c2c2c"      # Main text
+  text_secondary: "#5a5a5a"    # Muted text (dates, meta)
+  text_heading: "#1a1a1a"      # Headings
+
+  # Accent colors
+  accent: "#2d5a27"            # Links, highlights (saddle brown)
+  accent_hover: "#3d7a37"      # Link hover (sienna)
+
+  # Borders & UI
+  border: "#e0dcd4"            # Border color
+  shadow: "0 2px 12px rgba(0, 0, 0, 0.06)"
+
+  # Special
+  mark_bg: "#fff3cd"           # Highlight/mark background
+  selection: "#d4c4a8"         # Text selection
+
+# -----------------------------
+# DARK MODE COLORS
+# -----------------------------
+dark:
+  # Backgrounds
+  bg_primary: "#1a1916"        # Main background (warm black)
+  bg_secondary: "#252320"      # Header/card background
+  bg_code: "#2a2825"           # Code block background
+
+  # Text colors
+  text_primary: "#e8e4dc"      # Main text
+  text_secondary: "#a09a8c"    # Muted text
+  text_heading: "#f5f2eb"      # Headings
+
+  # Accent colors
+  accent: "#8bc78a"            # Links (warm gold)
+  accent_hover: "#a8d8a7"      # Link hover
+
+  # Borders & UI
+  border: "#3d3a35"            # Border color
+  shadow: "0 2px 12px rgba(0, 0, 0, 0.3)"
+
+  # Special
+  mark_bg: "#4a4020"           # Highlight background
+  selection: "#4a4535"         # Text selection
+
+# -----------------------------
+# HOVER & INTERACTION STYLES
+# -----------------------------
+interactions:
+  # Transition duration
+  transition_fast: "0.15s"
+  transition_normal: "0.25s"
+  transition_slow: "0.4s"
+
+  # Link underline style: "none", "hover", "always"
+  link_underline: "hover"
+
+  # Card hover effect: "lift", "glow", "border", "none"
+  card_hover: "lift"
+
+  # Button style: "solid", "outline", "ghost"
+  button_style: "solid"
+
+# -----------------------------
+# LAYOUT
+# -----------------------------
+layout:
+  # Max content width
+  max_width: "720px"
+  # Spacing scale
+  spacing_unit: "1rem"
+  # Border radius
+  border_radius: "4px"
+  # Header style: "minimal", "centered", "classic"
+  header_style: "minimal"

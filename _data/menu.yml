@@ -2,10 +2,10 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: Machine Learning 601
+  - title: Nik's Thinking and Writing
     entries:
       - title: github repo
-        url: https://github.com/nik-pitts/machinelearning601
+        url: https://github.com/nik-pitts/nik-posts
       - title: Little Cooperative Machines ML Research Log
       - title: From Classic ML to Modern ML Algorithms and Mathematics
 
