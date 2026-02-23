@@ -2,8 +2,8 @@ title: "Machine Learning 601"
 author: Nik Kim
 email: knocknocknik@gmail.com
 baseurl:
-url: "https://nik-pitts.github.io/machinelearning601"
-description: "Little Cooperative Machines ML Research Log"
+url: "https://nik-pitts.github.io/nik-posts"
+description: "Nik's Thinking and Writings"
 favicon: /favicon.svg
 
 permalink: /:slug.html
