@@ -3,8 +3,6 @@ layout: post
 category: Journal
 ---
 
-# Kid, life is just a journey
-
 Keeping up with the rapid advances of technology leaves me breathless. It seems I’m not the only one who feels this way. People working in the IT industry rush to learn the latest technologies, afraid that if they fail to catch this wave of opportunity, they will quickly fall behind and lose their value. Even those who naturally enjoy keeping up with technology feel exhausted by this survival race moving at such a relentless pace. I don’t know what the right answer is, and that makes it easy to lose my center. Is this right, or is that right? I weigh the significance and correctness of my choices dozens of times a day, yet there is no answer.
 
 That’s why something an older voice said on a podcast resonated with me: just face each day with the attitude that if you live this way, at least you won’t fail. Perhaps in an age when progress outpaces human adaptation, this may be one way to keep our balance. If someone were to tell me, “Kid, life is just a journey,” would the heaviness pressing on my heart ease even a little? Here, where everyone is racing forward with their eyes fixed ahead, life is, after all, a journey.
